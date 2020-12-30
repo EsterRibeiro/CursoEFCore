@@ -14,7 +14,7 @@ namespace Curso.Data
         //Método de configuração da string de conexão
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseSqlite("Data Source=c:\\mydb.db;Version=3");
+            optionsBuilder.UseSqlServer("Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;");
         }
 
         //Especificando a entidade

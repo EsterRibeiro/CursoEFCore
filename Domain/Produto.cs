@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Curso.Domain
 {
-    class Produto
+    public class Produto
     {
         public int Id { get; set; }
         public string CodigoBarras { get; set; }

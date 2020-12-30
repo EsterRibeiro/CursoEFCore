@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Curso.ValueObjects
 {
-    enum StatusPedido
+    public enum StatusPedido
     {
         Analise,
         Finalizado,

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Curso.ValueObjects
 {
-    enum TipoFrete
+    public enum TipoFrete
     {
         CIF, //remetente paga o frete
         FOB, // destinatário paga

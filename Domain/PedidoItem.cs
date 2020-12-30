@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Curso.Domain
 {
-    class PedidoItem
+    public class PedidoItem
     {
         public int Id { get; set; }
         public int IdPedido { get; set; }

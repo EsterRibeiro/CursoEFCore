@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Curso.ValueObjects
 {
-    enum TipoProduto
+    public enum TipoProduto
     {
         MercadoriaParaRevenda,
         Embalagem,
