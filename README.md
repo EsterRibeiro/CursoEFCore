@@ -5,9 +5,8 @@ Material:
 
 
 
-
 [Connection Strings](https://www.connectionstrings.com/ "Connection Strings Homepage")
-
+[Comandos EF Core](https://www.entityframeworktutorial.net/efcore/entity-framework-core-migration.aspx "EF Tutorial")
 Migrations
 
 CLI
