@@ -11,13 +11,13 @@ namespace Curso.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(type: "VARCHAR(80)", nullable: false),
                     Telefone = table.Column<string>(type: "CHAR(11)", nullable: true),
                     CEP = table.Column<string>(type: "CHAR(8)", nullable: false),
                     Estado = table.Column<string>(type: "CHAR(2)", nullable: false),
-                    Cidade = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false)
+                    Cidade = table.Column<string>(type: "TEXT", maxLength: 60, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,13 +28,13 @@ namespace Curso.Migrations
                 name: "Produtos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     CodigoBarras = table.Column<string>(type: "VARCHAR(14)", nullable: false),
                     Descricao = table.Column<string>(type: "VARCHAR(60)", nullable: true),
-                    Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TipoProduto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false)
+                    Valor = table.Column<decimal>(type: "TEXT", nullable: false),
+                    TipoProduto = table.Column<string>(type: "TEXT", nullable: false),
+                    Ativo = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,13 +45,13 @@ namespace Curso.Migrations
                 name: "Pedidos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    CriadoEm = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    FinalizadoEm = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TipoFrete = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "GETDATE()"),
+                    FinalizadoEm = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    TipoFrete = table.Column<int>(type: "INTEGER", nullable: false),
+                    Status = table.Column<string>(type: "TEXT", nullable: false),
                     Observacao = table.Column<string>(type: "VARCHAR(512)", nullable: true)
                 },
                 constraints: table =>
@@ -69,14 +69,14 @@ namespace Curso.Migrations
                 name: "PedidoItens",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdPedido = table.Column<int>(type: "int", nullable: false),
-                    PedidoId = table.Column<int>(type: "int", nullable: true),
-                    ProdutoId = table.Column<int>(type: "int", nullable: true),
-                    Quantidade = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Desconto = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IdPedido = table.Column<int>(type: "INTEGER", nullable: false),
+                    PedidoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ProdutoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Quantidade = table.Column<int>(type: "INTEGER", nullable: false, defaultValue: 1),
+                    Valor = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Desconto = table.Column<decimal>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

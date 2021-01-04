@@ -77,7 +77,6 @@ C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\bin\Debug\netc
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.csprojAssemblyReference.cache
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.AssemblyInfoInputs.cache
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.AssemblyInfo.cs
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.csproj.CoreCompileInputs.cache
@@ -85,3 +84,4 @@ C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netc
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.dll
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.pdb
 C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.genruntimeconfig.cache
+C:\Users\ester.santos\Documents\Estudos\Curso EF Core\CursoEFCore\obj\Debug\netcoreapp3.1\Curso.csprojAssemblyReference.cache
