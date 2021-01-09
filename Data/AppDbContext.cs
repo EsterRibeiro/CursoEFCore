@@ -10,11 +10,13 @@ namespace Curso.Data
     public class AppDbContext : DbContext
     {
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Produto> Produtos{ get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
         //Método de configuração da string de conexão
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseSqlite("");
+            optionsBuilder.UseSqlite("Data Source=C:\\Users\\ester.santos\\Desktop\\SQLiteStudio\\CursoEFCore.db;");
         }
 
         //Especificando a entidade
