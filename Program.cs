@@ -11,8 +11,8 @@ namespace Curso
     {
         static void Main(string[] args)
         {
-            InserirDados();
-
+            //InserirDados();
+            InserirDadosEmMassa();
             using var db = new Data.AppDbContext();
             
             //Verificar se há validações pendentes
@@ -48,6 +48,60 @@ namespace Curso
 
             var registro = db.SaveChanges(); //tudo que foi rastreado (em memória), gera instruções no banco
             Console.WriteLine(registro);
+        }
+
+
+        private static void InserirDadosEmMassa()
+        {
+            var produto = new Produto()
+            {
+                Descricao = "Esponja",
+                CodigoBarras = "1234567244442",
+                Valor = 18m,
+                TipoProduto = TipoProduto.MercadoriaParaRevenda,
+                Ativo = true
+            };
+
+            var cliente = new Cliente() 
+            {
+                Nome = "Ester",
+                Telefone = "21 2683263236",
+                CEP = "2287232",
+                Estado = "RJ",
+                Cidade = "RJ"
+            };
+
+            var listaClientes = new[]
+            {
+                new Cliente()
+                {
+                    Nome = "Maria",
+                    Telefone = "21 3322323",
+                    CEP = "2287232",
+                    Estado = "ES",
+                    Cidade = "Vitótia"
+
+                },
+
+                new Cliente()
+                {
+                    Nome = "Joana",
+                    Telefone = "21 34522232",
+                    CEP = "2287232",
+                    Estado = "SP",
+                    Cidade = "SP"
+
+                }
+
+            };
+
+            using var db = new AppDbContext();
+            //db.AddRange(produto, cliente);
+            //db.AddRange(listaClientes);
+            db.Set<Cliente>().AddRange(listaClientes);
+            var registros = db.SaveChanges();
+            Console.WriteLine(registros);
+        
         }
     }
 }
