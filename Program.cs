@@ -12,7 +12,8 @@ namespace Curso
         static void Main(string[] args)
         {
             //InserirDados();
-            InserirDadosEmMassa();
+            //InserirDadosEmMassa();
+            ConsultarDados();
             using var db = new Data.AppDbContext();
             
             //Verificar se há validações pendentes
@@ -102,6 +103,14 @@ namespace Curso
             var registros = db.SaveChanges();
             Console.WriteLine(registros);
         
+        }
+
+        private static void ConsultarDados() 
+        {
+            using var db = new AppDbContext();
+
+            var consultaPorSintaxe = (from c in db.Clientes where c.Id > 0 select c).ToList(); //consulta por sintaxe
+            var consultaPorMetodo = db.Clientes.Where(p => p.Id > 0).ToList();//consulta por método usando labda
         }
     }
 }
