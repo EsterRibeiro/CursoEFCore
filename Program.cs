@@ -17,7 +17,9 @@ namespace Curso
             // ConsultarDados();
             //CadastrarDados();
 
-            ConsultarPedidoCarregamentoAdiantado();
+            //ConsultarPedidoCarregamentoAdiantado();
+
+            AtualizarDados();
 
             using var db = new AppDbContext();
             
@@ -27,6 +29,34 @@ namespace Curso
             {
                 Console.WriteLine("Existem Migrações pendentes");
             }
+        }
+
+        private static void AtualizarDados() 
+        {
+            using var db = new AppDbContext();
+
+            //var cliente = db.Clientes.FirstOrDefault(p => p.Id == 1); // ou Find(1) => 1° cliente
+
+            //cliente.Nome = "Anna";
+            //db.Entry(cliente).State = EntityState.Modified;//forçando o rastreamento da entidade
+            //db.Update(cliente.Nome);
+            //db.SaveChanges();
+
+            var cliente = new Cliente()
+            {
+                Id = 1
+            };
+
+            //Atualizando os dados anônimos - alterando apenas campos que sofreram alterações
+            var clienteDesconectado = new 
+            {
+                Nome = "Cliente desconetado Teste 3",
+                Telefone = "55223232731"
+            };
+
+            db.Attach(cliente); // o objeto não está sendo rastreado pelo EF Core. o attach faz um rastreio interno
+            db.Entry(cliente).CurrentValues.SetValues(clienteDesconectado);
+
         }
 
         private static void ConsultarPedidoCarregamentoAdiantado() 
