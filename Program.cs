@@ -105,12 +105,29 @@ namespace Curso
         
         }
 
+        /// <summary>
+        /// Todos os métodos fazem a consulta pela base de dados 
+        /// com excessão do método Find(), que prioriza a busca por memória
+        /// 
+        /// O EF Core tem suporte para vários métodos do link
+        /// </summary>
         private static void ConsultarDados() 
         {
             using var db = new AppDbContext();
 
-            var consultaPorSintaxe = (from c in db.Clientes where c.Id > 0 select c).ToList(); //consulta por sintaxe
-            var consultaPorMetodo = db.Clientes.Where(p => p.Id > 0).ToList();//consulta por método usando labda
+            //var consultaPorSintaxe = (from c in db.Clientes where c.Id > 0 select c).ToList(); //consulta por sintaxe
+            //var consultaPorMetodo = db.Clientes.Where(p => p.Id > 0).ToList();//consulta por método usando labda
+            var consultaPorMetodo = db.Clientes.AsNoTracking()
+                .Where(p => p.Id > 0)
+                .OrderBy(p => p.Id)
+                .ToList(); //busca apenasa na base de dados AsNoTracking
+
+            foreach (var cliente in consultaPorMetodo) 
+            {
+                Console.WriteLine($"Consultando cliente: { cliente.Id}");
+                //db.Clientes.Find(cliente.Id); //consulta feita na chave primária - busca primeiro em memória e depois na base
+                db.Clientes.FirstOrDefault.(p => p.Id == cliente.Id);
+            }
         }
     }
 }
