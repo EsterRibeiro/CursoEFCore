@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Curso.Data;
 using Curso.Domain;
@@ -13,8 +14,12 @@ namespace Curso
         {
             //InserirDados();
             //InserirDadosEmMassa();
-            ConsultarDados();
-            using var db = new Data.AppDbContext();
+            // ConsultarDados();
+            //CadastrarDados();
+
+            ConsultarPedidoCarregamentoAdiantado();
+
+            using var db = new AppDbContext();
             
             //Verificar se há validações pendentes
             var existe = db.Database.GetPendingMigrations().Any() ;
@@ -22,6 +27,20 @@ namespace Curso
             {
                 Console.WriteLine("Existem Migrações pendentes");
             }
+        }
+
+        private static void ConsultarPedidoCarregamentoAdiantado() 
+        {
+            using var db = new AppDbContext();
+
+            var pedidos = db.Pedidos.ToList(); //carregamento apenas do pedido
+            var pedidos2 = db.Pedidos
+                .Include(p => p.Items)
+                .ThenInclude(p => p.Produto)
+                .ToList(); //carregamento apenas do pedido e pedidoItens usando lambda
+
+            Console.WriteLine($"Quantidade de pedidos {pedidos.Count}");
+            Console.WriteLine($"Quantidade de pedidos {pedidos2.Count}");
         }
 
         private static void InserirDados() 
@@ -105,11 +124,46 @@ namespace Curso
         
         }
 
+        private static void CadastrarDados() 
+        {
+            using var db = new AppDbContext();
+
+            var cliente = db.Clientes.FirstOrDefault();
+            var produto = db.Produtos.FirstOrDefault();
+
+            var pedido = new Pedido()
+            {
+                ClienteId = cliente.Id,
+                CriadoEm = DateTime.Now,
+                FinalizadoEm = DateTime.Now,
+                TipoFrete = TipoFrete.CIF,
+                Status = StatusPedido.Analise,
+                Observacao = "Observacao",
+                Items = new List<PedidoItem>
+                {
+                     new PedidoItem
+                    {
+                        ProdutoId = produto.Id,
+                        Quantidade = 2,
+                        Valor = 10,
+                        Desconto = 0
+                    }
+                }
+            };
+
+            db.Add(pedido);
+
+            db.SaveChanges();
+        
+
+    }
+
+
         /// <summary>
         /// Todos os métodos fazem a consulta pela base de dados 
         /// com excessão do método Find(), que prioriza a busca por memória
         /// 
-        /// O EF Core tem suporte para vários métodos do link
+        /// O EF Core tem suporte para métodos linq
         /// </summary>
         private static void ConsultarDados() 
         {
@@ -126,7 +180,7 @@ namespace Curso
             {
                 Console.WriteLine($"Consultando cliente: { cliente.Id}");
                 //db.Clientes.Find(cliente.Id); //consulta feita na chave primária - busca primeiro em memória e depois na base
-                db.Clientes.FirstOrDefault.(p => p.Id == cliente.Id);
+                db.Clientes.FirstOrDefault(p => p.Id == cliente.Id);
             }
         }
     }
