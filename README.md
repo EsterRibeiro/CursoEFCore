@@ -1,8 +1,7 @@
 # CursoEFCore
-Curso de Entity Framework Core da plataforma Desenvolvedor.IO
+Curso de Entity Framework Core básico da plataforma Desenvolvedor.IO
 
 Material:
-
 
 
 [Connection Strings](https://www.connectionstrings.com/ "Connection Strings Homepage")
@@ -11,7 +10,10 @@ Material:
 [Comandos EF Core](https://www.entityframeworktutorial.net/efcore/entity-framework-core-migration.aspx "EF Tutorial")
 
 
-Migrations
+[Anotações pessoais](https://docs.google.com/document/d/1EvXz-xlG7zcKYvzV3XL4bEfGkUxv2ByEln-h9N2nuxU/edit?usp=sharing "Anotações pessoais do curso")
+
+
+### Migrations
 
 CLI
 dotnet ef migrations add PrimeiraMigracao -p Curso .\CursoEFCore -o PastaDeMigracoes -c AppContext
@@ -29,4 +31,17 @@ dotnet ef migrations add PrimeiraMigracao -p Curso .\CursoEFCore -o PastaDeMigra
 Visual Studio
 
 Add-Migration InitialCreate
+
+### Dependências
+
+- Microsoft.EntityFrameworkCore.Design
+
+- Microsoft.EntityFrameworkCore.Sqlite
+
+- Microsoft.EntityFrameworkCore.Tools
+
+- Microsoft.Extensions.Logging.Abstractions
+
+- Microsoft.Extensions.Logging.Console
+
 
