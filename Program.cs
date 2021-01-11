@@ -19,7 +19,9 @@ namespace Curso
 
             //ConsultarPedidoCarregamentoAdiantado();
 
-            AtualizarDados();
+            //AtualizarDados();
+
+            DeletarDados();
 
             using var db = new AppDbContext();
             
@@ -29,6 +31,29 @@ namespace Curso
             {
                 Console.WriteLine("Existem Migrações pendentes");
             }
+        }
+
+        private static void DeletarDados() 
+        {
+            using var db = new AppDbContext();
+
+            var cliente = db.Clientes.Find(2); //utiliza chave primária da entidade
+
+            //db.Clientes.Remove(cliente);
+            //db.Remove(cliente);
+            //db.Entry(cliente).State = EntityState.Deleted;
+
+            //Remoção de dados desconectados - diferença de localização do dado antes da remoção (apenas deleta)
+
+            var clienteDesconectado = new Cliente()
+            {
+                Id = 3
+            };
+
+            db.Remove(clienteDesconectado);
+
+            db.SaveChanges();
+
         }
 
         private static void AtualizarDados() 
