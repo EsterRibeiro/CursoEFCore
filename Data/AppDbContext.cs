@@ -2,7 +2,7 @@
 using Curso.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
+using System.Linq;
 
 namespace Curso.Data
 {
@@ -28,10 +28,33 @@ namespace Curso.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 
+            MapearPropriedadesEsquecidas(modelBuilder);
+
             //modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             //modelBuilder.ApplyConfiguration(new PedidoConfiguration());
             //modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
             //modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+        }
+
+        //Configuração automática de propriedades
+
+        private void MapearPropriedadesEsquecidas(ModelBuilder modelBuilder) 
+        {
+            //foreach de todas as entidades
+            foreach(var entity in modelBuilder.Model.GetEntityTypes()) 
+            {
+                //pegando todas as propriedadesc do tipo string
+                var properties = entity.GetProperties().Where(p => p.ClrType == typeof(string));
+
+                foreach(var property in properties) 
+                {
+                    if(string.IsNullOrEmpty(property.GetColumnType()) && !property.GetMaxLength().HasValue)
+                    {
+                        //property.SetMaxLength(100);
+                        property.SetColumnType("VARCHAR(100)");
+                    }
+                }
+            }
         }
     }
 }
