@@ -20,6 +20,9 @@ namespace Curso.Data
             optionsBuilder.UseLoggerFactory(_logger)//qual log estou usando
             .EnableSensitiveDataLogging() //exibe os valores dos parâmetros gerados pelo EF Core
             .UseSqlite("Data Source=C:\\Users\\ester.santos\\Desktop\\SQLiteStudio\\CursoEFCore.db;");
+
+            // .MigrationsHistoryTable("nome_padrao_tabela") => alterar o nome das tabelas na migração
+            // p => p.EnableRetryOnFailure(maxRetryCount: 2, maxRetryDelay: TimeSpan.FromSeconds(5), errorNumbersToAdd : null) resiliência de conexão, sqlite não tem suporte
         }
 
         //Especificando a entidade
